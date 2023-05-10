@@ -1,10 +1,15 @@
-import { Box, NativeBaseProvider, extendTheme } from 'native-base';
+import { NativeBaseProvider, extendTheme } from 'native-base';
 import { FontSource, useFonts } from 'expo-font';
-
-import Header from './src/components/header/Header';
-import DaySelect from './src/components/day-select/DaySelect';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './src/components/home-screen/HomeScreen';
+import AddPillScreen from './src/components/add-pill-screen/AddPillScreen';
+import { RootStackParamList } from './src/types/Navigation';
+import NavigationHeader from './src/components/add-pill-screen/components/navigation-header/NavigationHeader';
 
 export default function App() {
+  const Stack = createNativeStackNavigator<RootStackParamList>();
+
   const [fontsLoaded] = useFonts({
     'SF-Pro-Display-Regular': require('./assets/fonts/SF-Pro-Display-Regular.otf') as FontSource,
     'SF-Pro-Display-Semibold': require('./assets/fonts/SF-Pro-Display-Semibold.otf') as FontSource,
@@ -35,10 +40,23 @@ export default function App() {
   return (
     <>
       <NativeBaseProvider theme={theme}>
-        <Box px={6} safeArea>
-          <Header />
-          <DaySelect />
-        </Box>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+            <Stack.Screen
+              name="AddNewPill"
+              component={AddPillScreen}
+              options={{
+                header: ({ navigation }) => (
+                  <NavigationHeader
+                    onPressBack={() => navigation.goBack()}
+                    onPressClose={() => navigation.navigate('Home')}
+                  />
+                ),
+              }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
       </NativeBaseProvider>
     </>
   );
