@@ -1,9 +1,10 @@
 import { FC, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Pressable } from 'react-native';
-import Svg, { Path } from 'react-native-svg';
-import { Actionsheet, ScrollView, Text, View, useDisclose } from 'native-base';
+import { Animated } from 'react-native';
+import { Actionsheet, Pressable, ScrollView, View, useDisclose } from 'native-base';
 import moment from 'moment';
 import * as Haptics from 'expo-haptics';
+import { ChevronDownSelectIcon } from '../Icons';
+import HeaderText from '../header-text/HeaderText';
 
 /**
  * "Select" component from NativeBase was not configurable enough for me,
@@ -77,18 +78,16 @@ const DaySelect: FC = () => {
 
   return (
     <>
-      <Pressable onPress={openDaySelectionPanel}>
+      <Pressable onPress={openDaySelectionPanel} marginTop={3}>
         <View display="flex" flexDirection="row" alignItems="center">
-          <Text fontSize="34" fontWeight="700" lineHeight="38">
-            {daysMapObj?.get(chosenDay as string)}
-          </Text>
+          <HeaderText>{daysMapObj?.get(chosenDay as string)}</HeaderText>
           <Animated.View
             style={{
               transform: [{ rotateZ: rotate }],
               marginLeft: 8,
             }}
           >
-            <ChevronDown />
+            <ChevronDownSelectIcon />
           </Animated.View>
         </View>
       </Pressable>
@@ -101,14 +100,5 @@ const DaySelect: FC = () => {
     </>
   );
 };
-
-const ChevronDown: FC = () => (
-  <Svg width={18} height={18} fill="none">
-    <Path
-      fill="#191D30"
-      d="M4.707 5.793a1 1 0 0 0-1.414 1.414l5 5a1 1 0 0 0 1.414 0l5-5a1 1 0 0 0-1.414-1.414L9 10.086 4.707 5.793Z"
-    />
-  </Svg>
-);
 
 export default DaySelect;
