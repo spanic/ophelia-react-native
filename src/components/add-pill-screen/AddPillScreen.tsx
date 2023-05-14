@@ -4,6 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import InfoText from '../info-text/InfoText';
 import HeaderText from '../header-text/HeaderText';
 import PillIconsGallery from './components/pill-icons-gallery/PillIconsGallery';
+import PillDataForm from './components/pill-data-form/PillDataForm';
 
 const AddPillScreen: FC = () => {
   const insets = useSafeAreaInsets();
@@ -18,9 +19,10 @@ const AddPillScreen: FC = () => {
       flexGrow={1}
       bg="white"
     >
-      <InfoText>Step 1 of 2</InfoText>
+      <InfoText marginTop={3}>Step 1 of 2</InfoText>
       <HeaderText marginTop={3}>Add medication</HeaderText>
       <PillIconsGallery />
+      <PillDataForm />
     </View>
   );
 };

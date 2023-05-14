@@ -7,7 +7,7 @@ import { HomeScreenProps } from '../../types/Navigation';
 
 const HomeScreen: FC<HomeScreenProps> = ({ navigation }) => (
   <Box px={6} flex={1} safeArea>
-    <InfoText>Hello, Andrei</InfoText>
+    <InfoText marginTop={3}>Hello, Andrei</InfoText>
     <DaySelect />
     <AddFloatingButton onPress={() => navigation.navigate('AddNewPill')} />
   </Box>
