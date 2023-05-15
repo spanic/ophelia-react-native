@@ -1,15 +1,18 @@
 import { FC } from 'react';
-import { FormControl, VStack } from 'native-base';
+import { FormControl, VStack, useDisclose } from 'native-base';
 import { useForm } from 'react-hook-form';
 import MultiLineInput from './components/multi-line-input/MultiLineInput';
 import InfoText from '../../../info-text/InfoText';
-import AddDoseControls from './components/add-dose-controls/AddDoseControls';
+import AddDoseActionSheet from './components/add-dose-controls/AddDoseControls';
+import AddDoseButton from './components/add-dose-button/AddDoseButton';
 
 export interface IPillDataFormInput {
   name: string;
 }
 
 const PillDataForm: FC = () => {
+  const { isOpen, onOpen, onClose } = useDisclose();
+
   const {
     control,
     formState: { errors },
@@ -20,7 +23,7 @@ const PillDataForm: FC = () => {
 
   return (
     <VStack space={10} marginTop={10} width="full">
-      {/* ===== Name ===== */}
+      {/* ===== Medication name text input ===== */}
       <FormControl isInvalid={!!errors.name}>
         <FormControl.Label marginTop={-1}>
           <InfoText>Name</InfoText>
@@ -41,7 +44,12 @@ const PillDataForm: FC = () => {
           </FormControl.ErrorMessage>
         )}
       </FormControl>
-      <AddDoseControls />
+
+      {/* ===== Add dose button ===== */}
+      <AddDoseButton onPress={onOpen} />
+
+      {/* ===== Add dose form bottom action sheet ===== */}
+      <AddDoseActionSheet isVisible={isOpen} onClose={onClose} />
     </VStack>
   );
 };

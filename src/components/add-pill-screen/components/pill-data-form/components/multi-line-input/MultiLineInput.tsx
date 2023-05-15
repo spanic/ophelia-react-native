@@ -1,33 +1,38 @@
-import { StyleSheet, TextInput } from 'react-native';
+import { StyleSheet, TextInput, TextInputProps } from 'react-native';
 import { FieldValues, UseControllerProps, useController } from 'react-hook-form';
+import { BottomSheetTextInput } from '@gorhom/bottom-sheet';
 
 interface IMultiLineInputProps<T extends FieldValues> {
   controllerProps: UseControllerProps<T>;
   placeholder?: string;
+  useInBottomSheet?: boolean;
 }
 
 function MultiLineInput<T extends FieldValues>({
   controllerProps,
   placeholder,
+  useInBottomSheet,
 }: IMultiLineInputProps<T>) {
   const {
     field: { onBlur, onChange, value },
   } = useController(controllerProps);
 
-  return (
-    <TextInput
-      style={styles.multilineTextInput}
-      placeholder={placeholder}
-      multiline={true}
-      cursorColor={'black'}
-      placeholderTextColor={'#C4CACF'}
-      allowFontScaling={false}
-      onBlur={onBlur}
-      onChangeText={onChange}
-      value={value}
-      blurOnSubmit={true}
-    />
-  );
+  const props: TextInputProps = {
+    style: styles.multilineTextInput,
+    placeholder: placeholder,
+    multiline: true,
+    cursorColor: 'black',
+    placeholderTextColor: '#C4CACF',
+    allowFontScaling: false,
+    onBlur,
+    onChangeText: onChange,
+    value,
+    blurOnSubmit: true,
+  };
+
+  const TextInputComponent = useInBottomSheet ? BottomSheetTextInput : TextInput;
+
+  return <TextInputComponent {...props} />;
 }
 
 const styles = StyleSheet.create({
@@ -38,28 +43,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     borderRadius: 6,
     backgroundColor: '#F2F6F7',
+    verticalAlign: 'middle',
   },
 });
 
 export default MultiLineInput;
-
-/* const MultiLineInput: FC<IMultiLineInputProps> = ({ controllerProps, placeholder }) => {
-  const {
-    field: { onBlur, onChange, value },
-  } = useController(controllerProps);
-
-  return (
-    <TextInput
-      style={styles.multilineTextInput}
-      placeholder={placeholder}
-      multiline={true}
-      cursorColor={'black'}
-      placeholderTextColor={'#C4CACF'}
-      allowFontScaling={false}
-      onBlur={onBlur}
-      onChangeText={onChange}
-      value={value}
-      blurOnSubmit={true}
-    />
-  );
-}; */
