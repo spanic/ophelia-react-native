@@ -3,7 +3,7 @@ import { FormControl, VStack, useDisclose } from 'native-base';
 import { useForm } from 'react-hook-form';
 import MultiLineInput from './components/multi-line-input/MultiLineInput';
 import InfoText from '../../../info-text/InfoText';
-import AddDoseActionSheet from './components/add-dose-controls/AddDoseControls';
+import AddDoseActionSheet from './components/add-dose-action-sheet/AddDoseActionSheet';
 import AddDoseButton from './components/add-dose-button/AddDoseButton';
 
 export interface IPillDataFormInput {
