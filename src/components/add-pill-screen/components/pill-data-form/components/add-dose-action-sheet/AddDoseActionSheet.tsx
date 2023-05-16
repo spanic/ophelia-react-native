@@ -30,7 +30,7 @@ const AddDoseActionSheet: FC<IAddDoseActionSheetProps> = ({ isVisible, onClose }
 
   const bottomSheetRef = useRef<BottomSheet>(null);
 
-  const snapPoints = useMemo(() => ['50%'], []);
+  const snapPoints = useMemo(() => ['70%'], []);
 
   useEffect(() => {
     if (isVisible && bottomSheetRef.current) {
@@ -48,7 +48,22 @@ const AddDoseActionSheet: FC<IAddDoseActionSheetProps> = ({ isVisible, onClose }
   const renderFooter = useCallback(
     (props: BottomSheetFooterProps) => (
       <BottomSheetFooter {...props}>
-        <Button margin={6}>Add</Button>
+        <Button
+          margin={6}
+          bg={'#1892FA'}
+          borderRadius={16}
+          h={'54px'}
+          _pressed={{
+            bg: '#1581df',
+          }}
+          _text={{
+            fontSize: 'md',
+            lineHeight: '20px',
+            fontWeight: 700,
+          }}
+        >
+          Add
+        </Button>
       </BottomSheetFooter>
     ),
     [],
@@ -75,12 +90,11 @@ const AddDoseActionSheet: FC<IAddDoseActionSheetProps> = ({ isVisible, onClose }
           index={-1 /* Closed */}
           topInset={insets.top}
           backdropComponent={renderBackdrop}
-          // footerComponent={renderFooter}
+          footerComponent={renderFooter}
           onClose={onClose}
-          // keyboardBehavior="extend"
         >
-          <ScrollView>
-            <VStack paddingX={6} space={4} width={'full'}>
+          <ScrollView style={{ marginBottom: 54 + 24 * 2 }}>
+            <VStack space={10} width={'full'} paddingX={6}>
               <FormControl>
                 <FormControl.Label marginTop={-1}>
                   <InfoText>Dose</InfoText>
@@ -109,7 +123,6 @@ const AddDoseActionSheet: FC<IAddDoseActionSheetProps> = ({ isVisible, onClose }
               </FormControl>
             </VStack>
           </ScrollView>
-          <Button m={6}>Add</Button>
         </BottomSheet>
       </Portal>
     </>
