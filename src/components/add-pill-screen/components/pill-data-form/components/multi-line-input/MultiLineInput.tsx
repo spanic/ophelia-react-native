@@ -6,12 +6,14 @@ interface IMultiLineInputProps<T extends FieldValues> {
   controllerProps: UseControllerProps<T>;
   placeholder?: string;
   useInBottomSheet?: boolean;
+  _textInput?: TextInputProps;
 }
 
 function MultiLineInput<T extends FieldValues>({
   controllerProps,
   placeholder,
   useInBottomSheet,
+  _textInput,
 }: IMultiLineInputProps<T>) {
   const {
     field: { onBlur, onChange, value },
@@ -28,6 +30,7 @@ function MultiLineInput<T extends FieldValues>({
     onChangeText: onChange,
     value,
     blurOnSubmit: true,
+    ..._textInput,
   };
 
   const TextInputComponent = useInBottomSheet ? BottomSheetTextInput : TextInput;

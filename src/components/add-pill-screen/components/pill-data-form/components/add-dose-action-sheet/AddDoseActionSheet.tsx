@@ -71,8 +71,9 @@ const AddDoseActionSheet: FC<IAddDoseActionSheetProps> = ({ isVisible, onClose }
                     name: 'dose',
                     control,
                   }}
-                  placeholder='e. g. "one pill"'
+                  placeholder="enter the amount"
                   useInBottomSheet={Platform.OS === 'ios'}
+                  _textInput={{ keyboardType: 'numeric' }}
                 />
                 <FormControl.HelperText>Optional</FormControl.HelperText>
               </FormControl>

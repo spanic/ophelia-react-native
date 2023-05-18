@@ -4,10 +4,11 @@ import { InterfaceHStackProps } from 'native-base/lib/typescript/components/prim
 
 export type HScrollableSelectorItemElement = ReactElement<IHScrollableSelectorItemProps>;
 
-export interface IHorizontalScrollableSelectorProps extends ScrollViewProps {
+export interface IHorizontalScrollableSelectorProps {
   children: HScrollableSelectorItemElement | Array<HScrollableSelectorItemElement>;
   onSelect?: (id: string) => void;
   enableNativeGesturesSupport?: boolean;
+  _scroll?: ScrollViewProps;
   _stack?: InterfaceHStackProps; // for inner HStack
 }
 

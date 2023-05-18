@@ -30,7 +30,7 @@ const HScrollableSelector: FC<IHorizontalScrollableSelectorProps> = ({
   onSelect,
   enableNativeGesturesSupport,
   _stack,
-  ...props
+  _scroll,
 }) => {
   const initiallySelectedItemId = useMemo<string | undefined>(
     () =>
@@ -45,6 +45,11 @@ const HScrollableSelector: FC<IHorizontalScrollableSelectorProps> = ({
   const ScrollViewComponent = useMemo(() => {
     return enableNativeGesturesSupport ? NativeGestureScrollView : ScrollView;
   }, [enableNativeGesturesSupport]);
+
+  const scrollViewComponentStyles = useMemo(
+    () => StyleSheet.compose(styles.scrollWrapper, _scroll?.style),
+    [_scroll?.style],
+  );
 
   const childSelectorItems = Children.map(children, (child) =>
     cloneElement(child, {
@@ -62,9 +67,9 @@ const HScrollableSelector: FC<IHorizontalScrollableSelectorProps> = ({
     <ScrollViewComponent
       horizontal={true}
       showsHorizontalScrollIndicator={false}
-      style={styles.scrollWrapper}
       contentContainerStyle={styles.scrollContainer}
-      {...props}
+      {..._scroll}
+      style={scrollViewComponentStyles}
     >
       <HStack space={6} alignItems="center" height="100%" paddingY={1} {..._stack}>
         {childSelectorItems}

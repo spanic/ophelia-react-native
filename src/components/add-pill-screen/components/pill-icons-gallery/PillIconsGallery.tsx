@@ -1,7 +1,11 @@
-import { FC, useMemo, useState } from 'react';
+import { FC, useMemo } from 'react';
 import { ImageSourcePropType } from 'react-native';
-import { HStack, ScrollView } from 'native-base';
-import PillIcon from './components/pill-icon/PillIcon';
+import { Circle, FormControl, Image } from 'native-base';
+import HScrollableSelector, {
+  HScrollableItemSelectionMark,
+  HScrollableSelectorItem,
+} from '../../../horizontal-scrollable-selector/HScrollableSelector';
+import InfoText from '../../../info-text/InfoText';
 
 const PillIconsGallery: FC = () => {
   const images: { [key: string]: ImageSourcePropType } = useMemo(() => {
@@ -23,33 +27,27 @@ const PillIconsGallery: FC = () => {
     };
   }, []);
 
-  const [selectedIconKey, setSelectedIconKey] = useState<string>();
-
   return (
     <>
-      <ScrollView
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        marginX={-6}
-        marginTop={9}
-        _contentContainerStyle={{ px: 6, paddingTop: '9px', paddingBottom: '5px' }}
-        flexGrow={0}
-      >
-        {
-          <HStack space={6} alignItems="center" height="100%">
-            {Object.entries(images).map(([key, image]) => {
-              return (
-                <PillIcon
-                  key={key}
-                  image={image}
-                  isSelected={key === selectedIconKey}
-                  onSelect={() => setSelectedIconKey(key)}
-                />
-              );
-            })}
-          </HStack>
-        }
-      </ScrollView>
+      <FormControl marginTop={9}>
+        <FormControl.Label>
+          <InfoText>Choose icon</InfoText>
+        </FormControl.Label>
+        <HScrollableSelector _scroll={{ style: { flexGrow: 0 } }}>
+          {Object.entries(images).map(([key, value], index) => (
+            <HScrollableSelectorItem
+              key={key}
+              id={key}
+              isSelected={index === 0}
+              selectionMark={<HScrollableItemSelectionMark />}
+            >
+              <Circle bg="#F2F6F7" size={16} p="15px">
+                <Image height="100%" alt="" resizeMode="contain" source={value}></Image>
+              </Circle>
+            </HScrollableSelectorItem>
+          ))}
+        </HScrollableSelector>
+      </FormControl>
     </>
   );
 };

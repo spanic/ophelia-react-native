@@ -5,11 +5,11 @@ import HScrollableSelector, {
   HScrollableSelectorItem,
 } from '../../../../../../../horizontal-scrollable-selector/HScrollableSelector';
 
-export interface MealTimeOptionsSelector {
+export interface IMealTimeOptionsSelectorProps {
   onSelect?: (id: string) => void;
 }
 
-const MealTimeOptionsSelector: FC<MealTimeOptionsSelector> = ({ onSelect }) => {
+const MealTimeOptionsSelector: FC<IMealTimeOptionsSelectorProps> = ({ onSelect }) => {
   const mealTimeOptionsMap: { [key: string]: string } = useMemo(() => {
     return {
       nevermind: 'Nevermind',
