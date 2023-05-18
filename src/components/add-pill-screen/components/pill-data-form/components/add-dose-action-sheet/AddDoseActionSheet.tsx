@@ -1,27 +1,22 @@
-import { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Button, FormControl, VStack, View } from 'native-base';
+import { FC, useCallback, useEffect, useRef, useState } from 'react';
+import { FormControl, VStack, View } from 'native-base';
 import { useForm } from 'react-hook-form';
 import InfoText from '../../../../../info-text/InfoText';
 import MultiLineInput from '../multi-line-input/MultiLineInput';
-import BottomSheet, {
-  BottomSheetBackdrop,
-  BottomSheetBackdropProps,
-  BottomSheetFooter,
-  BottomSheetFooterProps,
-} from '@gorhom/bottom-sheet';
+import BottomSheet, { BottomSheetBackdropProps } from '@gorhom/bottom-sheet';
 import { Portal } from '@gorhom/portal';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import DatePicker from 'react-native-date-picker';
 import { ScrollView } from 'react-native-gesture-handler';
+import { Platform, StyleSheet } from 'react-native';
+import MealTimeOptionsSelector from './components/meal-time-options-selector/MealTimeOptionsSelector';
+import Footer from './components/footer/Footer';
+import Backdrop from './components/backdrop/Backdrop';
+import { FOOTER_BUTTON_HEIGHT } from './constants/Constants';
+import { IAddDoseActionSheetProps, IAddDoseFormInput } from './types/AddDoseActionSheet.types';
 
-export interface IAddDoseFormInput {
-  dose: string;
-}
-
-export interface IAddDoseActionSheetProps {
-  isVisible: boolean;
-  onClose: () => void;
-}
+export const ACTION_SHEET_SNAP_POINTS = ['80%'],
+  STANDARD_PADDING_X = 24;
 
 const AddDoseActionSheet: FC<IAddDoseActionSheetProps> = ({ isVisible, onClose }) => {
   const insets = useSafeAreaInsets();
@@ -30,44 +25,11 @@ const AddDoseActionSheet: FC<IAddDoseActionSheetProps> = ({ isVisible, onClose }
 
   const bottomSheetRef = useRef<BottomSheet>(null);
 
-  const snapPoints = useMemo(() => ['70%'], []);
-
   useEffect(() => {
     if (isVisible && bottomSheetRef.current) {
       bottomSheetRef.current.snapToIndex(0);
     }
   }, [isVisible, bottomSheetRef.current]);
-
-  const renderBackdrop = useCallback(
-    (props: BottomSheetBackdropProps) => (
-      <BottomSheetBackdrop {...props} disappearsOnIndex={-1} appearsOnIndex={0} onPress={onClose} />
-    ),
-    [],
-  );
-
-  const renderFooter = useCallback(
-    (props: BottomSheetFooterProps) => (
-      <BottomSheetFooter {...props}>
-        <Button
-          margin={6}
-          bg={'#1892FA'}
-          borderRadius={16}
-          h={'54px'}
-          _pressed={{
-            bg: '#1581df',
-          }}
-          _text={{
-            fontSize: 'md',
-            lineHeight: '20px',
-            fontWeight: 700,
-          }}
-        >
-          Add
-        </Button>
-      </BottomSheetFooter>
-    ),
-    [],
-  );
 
   const {
     control,
@@ -77,23 +39,28 @@ const AddDoseActionSheet: FC<IAddDoseActionSheetProps> = ({ isVisible, onClose }
     defaultValues: {},
   });
 
+  const backdropRenderFn = useCallback(
+    (props: BottomSheetBackdropProps) => <Backdrop onClose={onClose} {...props} />,
+    [],
+  );
+
   return (
     <>
       <Portal>
         <BottomSheet
-          style={{ flex: 1 }}
+          style={styles.bottomSheet}
           ref={bottomSheetRef}
-          snapPoints={snapPoints}
+          snapPoints={ACTION_SHEET_SNAP_POINTS}
           keyboardBlurBehavior="restore"
           enablePanDownToClose={true}
           enableContentPanningGesture={false}
           index={-1 /* Closed */}
           topInset={insets.top}
-          backdropComponent={renderBackdrop}
-          footerComponent={renderFooter}
+          backdropComponent={backdropRenderFn}
+          footerComponent={Footer}
           onClose={onClose}
         >
-          <ScrollView style={{ marginBottom: 54 + 24 * 2 }}>
+          <ScrollView style={styles.scroll}>
             <VStack space={10} width={'full'} paddingX={6}>
               <FormControl>
                 <FormControl.Label marginTop={-1}>
@@ -105,6 +72,7 @@ const AddDoseActionSheet: FC<IAddDoseActionSheetProps> = ({ isVisible, onClose }
                     control,
                   }}
                   placeholder='e. g. "one pill"'
+                  useInBottomSheet={Platform.OS === 'ios'}
                 />
                 <FormControl.HelperText>Optional</FormControl.HelperText>
               </FormControl>
@@ -115,12 +83,13 @@ const AddDoseActionSheet: FC<IAddDoseActionSheetProps> = ({ isVisible, onClose }
                 <View alignItems={'center'}>
                   <DatePicker
                     mode="time"
-                    style={{ width: 150 }}
+                    style={styles.datePicker}
                     date={date}
                     onDateChange={setDate}
                   />
                 </View>
               </FormControl>
+              <MealTimeOptionsSelector />
             </VStack>
           </ScrollView>
         </BottomSheet>
@@ -128,5 +97,17 @@ const AddDoseActionSheet: FC<IAddDoseActionSheetProps> = ({ isVisible, onClose }
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  bottomSheet: {
+    flex: 1,
+  },
+  scroll: {
+    marginBottom: FOOTER_BUTTON_HEIGHT + 2 * STANDARD_PADDING_X,
+  },
+  datePicker: {
+    width: 150,
+  },
+});
 
 export default AddDoseActionSheet;
