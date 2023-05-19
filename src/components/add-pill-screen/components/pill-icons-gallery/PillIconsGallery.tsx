@@ -33,7 +33,7 @@ const PillIconsGallery: FC = () => {
         <FormControl.Label>
           <InfoText>Choose icon</InfoText>
         </FormControl.Label>
-        <HScrollableSelector _scroll={{ style: { flexGrow: 0 } }}>
+        <HScrollableSelector _scroll={{ style: { flexGrow: 0, marginTop: 3 } }}>
           {Object.entries(images).map(([key, value], index) => (
             <HScrollableSelectorItem
               key={key}

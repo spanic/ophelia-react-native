@@ -1,10 +1,11 @@
 import { FC, useEffect, useMemo, useRef, useState } from 'react';
 import { Animated } from 'react-native';
-import { Actionsheet, Pressable, ScrollView, View, useDisclose } from 'native-base';
+import { Actionsheet, Pressable, View, useDisclose } from 'native-base';
 import moment from 'moment';
 import * as Haptics from 'expo-haptics';
 import { ChevronDownSelectIcon } from '../Icons';
 import HeaderText from '../header-text/HeaderText';
+import BottomPanel from '../bottom-panel/BottomPanel';
 
 /**
  * "Select" component from NativeBase was not configurable enough for me,
@@ -42,6 +43,7 @@ const DaySelect: FC = () => {
         key={key}
         onPress={() => onChooseDay(key)}
         borderRadius="md"
+        bg={'white'}
         _pressed={{
           bg: '#E9F3E1',
         }}
@@ -92,11 +94,9 @@ const DaySelect: FC = () => {
         </View>
       </Pressable>
 
-      <Actionsheet isOpen={isOpen} onClose={closeDaySelectionPanel}>
-        <Actionsheet.Content>
-          <ScrollView w="100%">{daysItems}</ScrollView>
-        </Actionsheet.Content>
-      </Actionsheet>
+      <BottomPanel snapPoints={['50%']} isOpened={isOpen} onClose={closeDaySelectionPanel}>
+        {daysItems}
+      </BottomPanel>
     </>
   );
 };
