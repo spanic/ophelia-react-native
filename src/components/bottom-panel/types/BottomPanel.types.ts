@@ -1,5 +1,6 @@
-import { BottomSheetBackdropProps, BottomSheetProps } from '@gorhom/bottom-sheet';
 import { ScrollViewProps } from 'react-native';
+
+import { BottomSheetBackdropProps, BottomSheetProps } from '@gorhom/bottom-sheet';
 
 export interface IBottomPanelProps extends BottomSheetProps {
   isOpened: boolean;

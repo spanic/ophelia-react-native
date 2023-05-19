@@ -1,5 +1,6 @@
+import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
 import { StyleSheet, TextInput, TextInputProps } from 'react-native';
-import { FieldValues, UseControllerProps, useController } from 'react-hook-form';
+
 import { BottomSheetTextInput } from '@gorhom/bottom-sheet';
 
 interface IMultiLineInputProps<T extends FieldValues> {

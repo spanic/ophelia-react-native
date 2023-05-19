@@ -1,11 +1,12 @@
+import * as Haptics from 'expo-haptics';
+import moment from 'moment';
+import { Actionsheet, Pressable, useDisclose, View } from 'native-base';
 import { FC, useEffect, useMemo, useRef, useState } from 'react';
 import { Animated } from 'react-native';
-import { Actionsheet, Pressable, View, useDisclose } from 'native-base';
-import moment from 'moment';
-import * as Haptics from 'expo-haptics';
-import { ChevronDownSelectIcon } from '../Icons';
-import HeaderText from '../header-text/HeaderText';
-import BottomPanel from '../bottom-panel/BottomPanel';
+
+import BottomPanel from 'src/components/bottom-panel/BottomPanel';
+import HeaderText from 'src/components/header-text/HeaderText';
+import { ChevronDownSelectIcon } from 'src/components/Icons';
 
 /**
  * "Select" component from NativeBase was not configurable enough for me,

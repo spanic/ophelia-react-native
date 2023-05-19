@@ -1,8 +1,8 @@
-import { FC } from 'react';
 import { Pressable, View } from 'native-base';
+import { FC } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { CloseIcon, GoBackChevronIcon } from '../../../Icons';
+import { CloseIcon, GoBackChevronIcon } from 'src/components/Icons';
 
 interface INavigationHeaderProps {
   onPressBack?: () => void;

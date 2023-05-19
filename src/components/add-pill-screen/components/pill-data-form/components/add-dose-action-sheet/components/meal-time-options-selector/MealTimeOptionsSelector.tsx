@@ -1,9 +1,10 @@
 import { View } from 'native-base';
 import { FC, useCallback, useMemo } from 'react';
-import InfoText from '../../../../../../../info-text/InfoText';
+
 import HScrollableSelector, {
   HScrollableSelectorItem,
-} from '../../../../../../../horizontal-scrollable-selector/HScrollableSelector';
+} from 'src/components/horizontal-scrollable-selector/HScrollableSelector';
+import InfoText from 'src/components/info-text/InfoText';
 
 export interface IMealTimeOptionsSelectorProps {
   onSelect?: (id: string) => void;
@@ -34,7 +35,7 @@ const MealTimeOptionsSelector: FC<IMealTimeOptionsSelectorProps> = ({ onSelect }
     <HScrollableSelector _stack={{ space: 4 }} onSelect={onSelect}>
       {Object.entries(mealTimeOptionsMap).map(([key, value], index) => (
         <HScrollableSelectorItem key={key} id={key} isSelected={index === 0}>
-          {(selected) => innerElementRenderFn(value, selected)}
+          {(selected: boolean) => innerElementRenderFn(value, selected)}
         </HScrollableSelectorItem>
       ))}
     </HScrollableSelector>

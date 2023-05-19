@@ -1,14 +1,16 @@
-import { NativeBaseProvider, extendTheme } from 'native-base';
 import { FontSource, useFonts } from 'expo-font';
+import { extendTheme, NativeBaseProvider } from 'native-base';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+import AddPillScreen from 'src/components/add-pill-screen/AddPillScreen';
+import NavigationHeader from 'src/components/add-pill-screen/components/navigation-header/NavigationHeader';
+import HomeScreen from 'src/components/home-screen/HomeScreen';
+import { RootStackParamList } from 'src/types/Navigation';
+
+import { PortalProvider } from '@gorhom/portal';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './src/components/home-screen/HomeScreen';
-import AddPillScreen from './src/components/add-pill-screen/AddPillScreen';
-import { RootStackParamList } from './src/types/Navigation';
-import NavigationHeader from './src/components/add-pill-screen/components/navigation-header/NavigationHeader';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { PortalProvider } from '@gorhom/portal';
 
 export default function App() {
   const Stack = createNativeStackNavigator<RootStackParamList>();

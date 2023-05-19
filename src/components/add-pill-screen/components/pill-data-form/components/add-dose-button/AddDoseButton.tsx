@@ -1,7 +1,8 @@
-import { FC, memo } from 'react';
 import { Circle, HStack, Pressable } from 'native-base';
-import { PlusIcon } from '../../../../../Icons';
-import InfoText from '../../../../../info-text/InfoText';
+import { FC, memo } from 'react';
+
+import { PlusIcon } from 'src/components/Icons';
+import InfoText from 'src/components/info-text/InfoText';
 
 export interface IAddDoseButtonProps {
   onPress: () => void;

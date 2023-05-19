@@ -1,23 +1,25 @@
-import {
-  FC,
-  cloneElement,
-  useMemo,
-  useState,
-  Children,
-  useRef,
-  useEffect,
-  useCallback,
-  memo,
-} from 'react';
-import { Animated, Easing, Pressable, ScrollView, StyleSheet } from 'react-native';
 import { Box, HStack } from 'native-base';
-import { ScrollView as NativeGestureScrollView } from 'react-native-gesture-handler';
-import { SelectedIcon } from '../Icons';
 import { InterfaceBoxProps } from 'native-base/lib/typescript/components/primitives/Box';
 import {
+  Children,
+  cloneElement,
+  FC,
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import { Animated, Easing, Pressable, ScrollView, StyleSheet } from 'react-native';
+import { ScrollView as NativeGestureScrollView } from 'react-native-gesture-handler';
+
+import { SelectedIcon } from 'src/components/Icons';
+
+import {
   HScrollableSelectorItemElement,
-  IHScrollableSelectorItemProps,
   IHorizontalScrollableSelectorProps,
+  IHScrollableSelectorItemProps,
 } from './types/HScrollableSelector.types';
 
 /**

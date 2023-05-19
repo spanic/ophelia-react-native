@@ -1,11 +1,13 @@
 import { FC, ReactNode, useCallback, useEffect, useRef } from 'react';
 import { StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import BottomSheet, { BottomSheetBackdropProps } from '@gorhom/bottom-sheet';
 import { Portal } from '@gorhom/portal';
+
 import Backdrop from './components/backdrop/Backdrop';
 import { IBottomPanelProps } from './types/BottomPanel.types';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ScrollView } from 'react-native-gesture-handler';
 
 const BottomPanel: FC<IBottomPanelProps> = ({
   snapPoints,

@@ -1,10 +1,11 @@
+import { View } from 'native-base';
 import { FC } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import InfoText from '../info-text/InfoText';
+
 import HeaderText from '../header-text/HeaderText';
-import PillIconsGallery from './components/pill-icons-gallery/PillIconsGallery';
+import InfoText from '../info-text/InfoText';
 import PillDataForm from './components/pill-data-form/PillDataForm';
-import { View } from 'native-base';
+import PillIconsGallery from './components/pill-icons-gallery/PillIconsGallery';
 
 const AddPillScreen: FC = () => {
   const insets = useSafeAreaInsets();

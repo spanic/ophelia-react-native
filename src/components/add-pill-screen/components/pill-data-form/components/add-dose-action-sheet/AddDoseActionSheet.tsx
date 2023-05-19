@@ -1,15 +1,17 @@
+import { FormControl, View, VStack } from 'native-base';
 import { FC, useState } from 'react';
-import { FormControl, VStack, View } from 'native-base';
 import { useForm } from 'react-hook-form';
-import InfoText from '../../../../../info-text/InfoText';
-import MultiLineInput from '../multi-line-input/MultiLineInput';
-import DatePicker from 'react-native-date-picker';
 import { Platform, StyleSheet } from 'react-native';
+import DatePicker from 'react-native-date-picker';
+
+import BottomPanel from 'src/components/bottom-panel/BottomPanel';
+import InfoText from 'src/components/info-text/InfoText';
+
+import MultiLineInput from '../multi-line-input/MultiLineInput';
+import Footer from './components/footer/Footer';
 import MealTimeOptionsSelector from './components/meal-time-options-selector/MealTimeOptionsSelector';
 import { FOOTER_BUTTON_HEIGHT } from './constants/Constants';
 import { IAddDoseActionSheetProps, IAddDoseFormInput } from './types/AddDoseActionSheet.types';
-import BottomPanel from '../../../../../bottom-panel/BottomPanel';
-import Footer from './components/footer/Footer';
 
 export const ACTION_SHEET_SNAP_POINTS = ['75%'],
   STANDARD_PADDING_X = 24;

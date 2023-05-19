@@ -1,6 +1,8 @@
-import { BottomSheetFooter, BottomSheetFooterProps } from '@gorhom/bottom-sheet';
 import { Button } from 'native-base';
 import { FC } from 'react';
+
+import { BottomSheetFooter, BottomSheetFooterProps } from '@gorhom/bottom-sheet';
+
 import { FOOTER_BUTTON_HEIGHT } from '../../constants/Constants';
 
 const Footer: FC<BottomSheetFooterProps> = (props) => (

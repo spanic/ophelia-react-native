@@ -1,11 +1,12 @@
+import { Circle, FormControl, Image } from 'native-base';
 import { FC, useMemo } from 'react';
 import { ImageSourcePropType } from 'react-native';
-import { Circle, FormControl, Image } from 'native-base';
+
 import HScrollableSelector, {
   HScrollableItemSelectionMark,
   HScrollableSelectorItem,
-} from '../../../horizontal-scrollable-selector/HScrollableSelector';
-import InfoText from '../../../info-text/InfoText';
+} from 'src/components/horizontal-scrollable-selector/HScrollableSelector';
+import InfoText from 'src/components/info-text/InfoText';
 
 const PillIconsGallery: FC = () => {
   const images: { [key: string]: ImageSourcePropType } = useMemo(() => {

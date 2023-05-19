@@ -1,7 +1,8 @@
 import { FC, useState } from 'react';
-import { TextInput, View, Text, StyleSheet } from 'react-native';
-import { UseControllerProps, useController } from 'react-hook-form';
-import { IPillDataFormInput } from '../../PillDataForm';
+import { useController, UseControllerProps } from 'react-hook-form';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
+
+import { IPillDataFormInput } from '../../types/PillDataForm.types';
 
 interface ISingleLIneTextInputProps {
   controllerProps: UseControllerProps<IPillDataFormInput>;

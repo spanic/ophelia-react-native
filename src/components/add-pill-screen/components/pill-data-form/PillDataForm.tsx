@@ -1,14 +1,13 @@
+import { FormControl, useDisclose, VStack } from 'native-base';
 import { FC } from 'react';
-import { FormControl, VStack, useDisclose } from 'native-base';
 import { useForm } from 'react-hook-form';
-import MultiLineInput from './components/multi-line-input/MultiLineInput';
-import InfoText from '../../../info-text/InfoText';
-import AddDoseButton from './components/add-dose-button/AddDoseButton';
-import AddDoseActionSheet from './components/add-dose-action-sheet/AddDoseActionSheet';
 
-export interface IPillDataFormInput {
-  name: string;
-}
+import InfoText from 'src/components/info-text/InfoText';
+
+import AddDoseActionSheet from './components/add-dose-action-sheet/AddDoseActionSheet';
+import AddDoseButton from './components/add-dose-button/AddDoseButton';
+import MultiLineInput from './components/multi-line-input/MultiLineInput';
+import { IPillDataFormInput } from './types/PillDataForm.types';
 
 const PillDataForm: FC = () => {
   const { isOpen, onOpen, onClose } = useDisclose();

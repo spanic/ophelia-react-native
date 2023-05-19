@@ -1,5 +1,7 @@
 import { FC } from 'react';
+
 import { BottomSheetBackdrop } from '@gorhom/bottom-sheet';
+
 import { IBackdropProps } from '../../types/BottomPanel.types';
 
 const Backdrop: FC<IBackdropProps> = ({ onClose, ...props }) => (
