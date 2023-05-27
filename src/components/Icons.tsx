@@ -45,10 +45,22 @@ const SelectedIcon: FC = memo(() => (
   </Svg>
 ));
 
+const TickIcon: FC = memo(() => (
+  <Svg width={18} height={14} fill="none">
+    <Path
+      stroke="#191D30"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="m1.08 8 4.526 4.525L16.92 1.212"
+    />
+  </Svg>
+));
+
 const PlusIcon: FC = memo(() => (
   <Svg width={16} height={16} fill="none">
     <Path stroke="#191D30" strokeLinecap="round" strokeWidth={2} d="M1 8h14m-7 7V1" />
   </Svg>
 ));
 
-export { ChevronDownSelectIcon, GoBackChevronIcon, CloseIcon, SelectedIcon, PlusIcon };
+export { ChevronDownSelectIcon, GoBackChevronIcon, CloseIcon, SelectedIcon, TickIcon, PlusIcon };

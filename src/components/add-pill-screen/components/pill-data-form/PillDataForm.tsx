@@ -2,6 +2,7 @@ import { FormControl, useDisclose, VStack } from 'native-base';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 
+import TypeAndUnitSelector from 'src/components/add-pill-screen/components/pill-data-form/components/pill-type-and-unit-selector/TypeAndUnitSelector';
 import InfoText from 'src/components/info-text/InfoText';
 
 import AddDoseActionSheet from './components/add-dose-action-sheet/AddDoseActionSheet';
@@ -41,6 +42,9 @@ const PillDataForm: FC = () => {
           <FormControl.ErrorMessage>This field is required</FormControl.ErrorMessage>
         )}
       </FormControl>
+
+      {/* ===== Pill types and units selector ===== */}
+      <TypeAndUnitSelector />
 
       {/* ===== Add dose button ===== */}
       <AddDoseButton onPress={onOpen} />

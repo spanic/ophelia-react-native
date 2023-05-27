@@ -43,8 +43,7 @@ const styles = StyleSheet.create({
   multilineTextInput: {
     lineHeight: 24,
     fontSize: 20,
-    paddingVertical: 8,
-    paddingHorizontal: 8,
+    padding: 8,
     borderRadius: 6,
     backgroundColor: '#F2F6F7',
     verticalAlign: 'middle',

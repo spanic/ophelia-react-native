@@ -4,15 +4,15 @@ module.exports = function (api) {
     presets: ['babel-preset-expo'],
     plugins: [
       [
-        'react-native-reanimated/plugin',
-        {
-          relativeSourceLocation: true,
-        },
-      ],
-      [
         'module-resolver',
         {
           alias: { src: './src' },
+        },
+      ],
+      [
+        'react-native-reanimated/plugin',
+        {
+          relativeSourceLocation: true,
         },
       ],
     ],
