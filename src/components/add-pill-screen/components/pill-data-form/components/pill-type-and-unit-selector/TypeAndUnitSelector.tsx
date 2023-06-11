@@ -1,16 +1,9 @@
-import { FC, useEffect, useMemo, useState } from 'react';
-import Animated, { FadeInDown, FadeOutDown } from 'react-native-reanimated';
+import { Text } from 'native-base';
+import { FC, useMemo } from 'react';
 
-import InfoText from 'src/components/info-text/InfoText';
-import OptionsBlock from 'src/components/options-block/OptionsBlock';
+import { ITypesAndUnitsSelectorProps, TypesAndUnits } from './types/TypeAndUnitSelector.types';
 
-import {
-  ITypesAndUnitsSelectorProps,
-  TypeAndUnit,
-  TypesAndUnits,
-} from './types/TypeAndUnitSelector.types';
-
-const TypeAndUnitSelector: FC<ITypesAndUnitsSelectorProps> = ({ onChange }) => {
+const TypeAndUnitSelector: FC<ITypesAndUnitsSelectorProps> = () => {
   const sourceTypesAndUnits: TypesAndUnits = useMemo(() => {
     return [
       {
@@ -38,50 +31,7 @@ const TypeAndUnitSelector: FC<ITypesAndUnitsSelectorProps> = ({ onChange }) => {
     ];
   }, []);
 
-  const [selectedType, setSelectedType] = useState<string>();
-  const [selectedUnit, setSelectedUnit] = useState<string>();
-
-  const unitsForSelectedType = useMemo(() => {
-    if (!selectedType) {
-      return;
-    }
-    return sourceTypesAndUnits?.find(({ id }) => id === selectedType)?.units;
-  }, [sourceTypesAndUnits, selectedType]);
-
-  useEffect(() => {
-    setSelectedUnit(undefined);
-  }, [unitsForSelectedType]);
-
-  useEffect(() => {
-    let value: TypeAndUnit | undefined;
-    if (selectedType && (selectedUnit || !unitsForSelectedType?.length)) {
-      value = { typeId: selectedType, unitId: selectedUnit };
-    }
-    onChange(value);
-  }, [selectedType, selectedUnit]);
-
-  return (
-    <>
-      <OptionsBlock
-        data={sourceTypesAndUnits}
-        selectedOptionId={selectedType}
-        onSelect={setSelectedType}
-      />
-
-      {unitsForSelectedType && (
-        <Animated.View entering={FadeInDown} exiting={FadeOutDown}>
-          <InfoText marginTop={4} marginBottom={1}>
-            Unit
-          </InfoText>
-          <OptionsBlock
-            data={unitsForSelectedType}
-            selectedOptionId={selectedUnit}
-            onSelect={setSelectedUnit}
-          />
-        </Animated.View>
-      )}
-    </>
-  );
+  return <Text>Types and units selector</Text>;
 };
 
 export default TypeAndUnitSelector;
