@@ -5,7 +5,7 @@ import { IKeyLabel } from 'src/types/Util.types';
 export interface IOptionsBlockProps extends IBoxProps {
   data: Array<IKeyLabel>;
   selectedOptionId: IKeyLabel['id'] | undefined;
-  onSelect: (value: string | undefined) => void;
+  onSelect: (value: string) => void;
 }
 
 export interface IOptionProps extends Omit<IKeyLabel, 'id'> {
