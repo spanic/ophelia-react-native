@@ -4,8 +4,9 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import AddPillScreen from 'src/components/add-pill-screen/AddPillScreen';
-import NavigationHeader from 'src/components/add-pill-screen/components/navigation-header/NavigationHeader';
 import HomeScreen from 'src/components/home-screen/HomeScreen';
+import NavigationHeader from 'src/components/navigation-header/NavigationHeader';
+import ScheduleScreen from 'src/components/schedule-screen/ScheduleScreen';
 import { RootStackParamList } from 'src/types/Navigation';
 
 import { PortalProvider } from '@gorhom/portal';
@@ -48,20 +49,10 @@ export default function App() {
         <SafeAreaProvider>
           <PortalProvider>
             <NavigationContainer>
-              <Stack.Navigator initialRouteName="Home">
+              <Stack.Navigator initialRouteName="Home" screenOptions={{ header: NavigationHeader }}>
                 <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-                <Stack.Screen
-                  name="AddNewPill"
-                  component={AddPillScreen}
-                  options={{
-                    header: ({ navigation }) => (
-                      <NavigationHeader
-                        onPressBack={() => navigation.goBack()}
-                        onPressClose={() => navigation.navigate('Home')}
-                      />
-                    ),
-                  }}
-                />
+                <Stack.Screen name="AddNewPill" component={AddPillScreen} />
+                <Stack.Screen name={'Schedule'} component={ScheduleScreen} />
               </Stack.Navigator>
             </NavigationContainer>
           </PortalProvider>

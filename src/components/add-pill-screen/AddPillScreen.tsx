@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 
+import { AddPillScreenProps } from 'src/types/Navigation';
+
 import { PortalHost } from '@gorhom/portal';
 
 import HeaderText from '../header-text/HeaderText';
@@ -8,7 +10,7 @@ import InfoText from '../info-text/InfoText';
 import PillDataForm from './components/pill-data-form/PillDataForm';
 import PillIconsGallery from './components/pill-icons-gallery/PillIconsGallery';
 
-const AddPillScreen: FC = () => {
+const AddPillScreen: FC<AddPillScreenProps> = ({ navigation }) => {
   return (
     <>
       <ScrollView
@@ -19,7 +21,7 @@ const AddPillScreen: FC = () => {
         <InfoText marginTop={3}>Step 1 of 2</InfoText>
         <HeaderText marginTop={3}>Add medication</HeaderText>
         <PillIconsGallery />
-        <PillDataForm />
+        <PillDataForm onPressNext={() => navigation.navigate('Schedule')} />
       </ScrollView>
       <PortalHost name="AddPillScreenPortal" />
     </>

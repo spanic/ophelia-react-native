@@ -1,4 +1,4 @@
-import { Button, FormControl, useDisclose, View, VStack } from 'native-base';
+import { Button, FormControl, View, VStack } from 'native-base';
 import { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -6,14 +6,13 @@ import { Shadow } from 'react-native-shadow-2';
 
 import TypeAndUnitSelector from 'src/components/add-pill-screen/components/pill-data-form/components/pill-type-and-unit-selector/TypeAndUnitSelector';
 import InfoText from 'src/components/info-text/InfoText';
+import MultiLineInput from 'src/components/multi-line-input/MultiLineInput';
 
 import { Portal } from '@gorhom/portal';
 
-import MultiLineInput from './components/multi-line-input/MultiLineInput';
-import { IPillDataFormInput } from './types/PillDataForm.types';
+import { IPillDataFormInput, IPillDataFormProps } from './types/PillDataForm.types';
 
-const PillDataForm: FC = () => {
-  const { isOpen, onOpen, onClose } = useDisclose();
+const PillDataForm: FC<IPillDataFormProps> = ({ onPressNext }) => {
   const insets = useSafeAreaInsets();
 
   const {
@@ -69,12 +68,6 @@ const PillDataForm: FC = () => {
             name={'typeAndUnit'}
           />
         </FormControl>
-
-        {/* ===== Add dose button ===== */}
-        {/* <AddDoseButton onPress={onOpen} /> */}
-
-        {/* ===== Add dose form bottom action sheet ===== */}
-        {/* <AddDoseActionSheet isVisible={isOpen} onClose={onClose} /> */}
       </VStack>
 
       {/* ===== Go to schedule sheet button ===== */}
@@ -108,6 +101,7 @@ const PillDataForm: FC = () => {
                 },
               }}
               isDisabled={!isValid}
+              onPress={onPressNext}
             >
               Go to next step
             </Button>

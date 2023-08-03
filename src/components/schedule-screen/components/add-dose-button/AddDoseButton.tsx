@@ -10,7 +10,7 @@ export interface IAddDoseButtonProps {
 
 const AddDoseButton: FC<IAddDoseButtonProps> = memo(({ onPress }) => {
   return (
-    <Pressable onPress={onPress}>
+    <Pressable marginTop={9} onPress={onPress}>
       <HStack alignItems={'center'} space={3} alignSelf={'flex-start'}>
         <Circle size={12} bg={'#F2F6F7'}>
           <PlusIcon />

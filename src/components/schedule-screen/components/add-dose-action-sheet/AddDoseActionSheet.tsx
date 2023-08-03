@@ -6,8 +6,8 @@ import DatePicker from 'react-native-date-picker';
 
 import BottomPanel from 'src/components/bottom-panel/BottomPanel';
 import InfoText from 'src/components/info-text/InfoText';
+import MultiLineInput from 'src/components/multi-line-input/MultiLineInput';
 
-import MultiLineInput from '../multi-line-input/MultiLineInput';
 import Footer from './components/footer/Footer';
 import MealTimeOptionsSelector from './components/meal-time-options-selector/MealTimeOptionsSelector';
 import { FOOTER_BUTTON_HEIGHT } from './constants/Constants';
