@@ -1,6 +1,6 @@
 import { FormControl, View, VStack } from 'native-base';
 import { FC, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { Platform, StyleSheet } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 
@@ -41,14 +41,18 @@ const AddDoseActionSheet: FC<IAddDoseActionSheetProps> = ({ isVisible, onClose }
             <FormControl.Label marginTop={-1}>
               <InfoText>Dose</InfoText>
             </FormControl.Label>
-            <MultiLineInput<IAddDoseFormInput>
-              controllerProps={{
-                name: 'dose',
-                control,
-              }}
-              placeholder="enter the amount"
-              useInBottomSheet={Platform.OS === 'ios'}
-              _textInput={{ keyboardType: 'numeric' }}
+            <Controller
+              control={control}
+              render={({ field: { value, onChange, onBlur } }) => (
+                <MultiLineInput
+                  value={value}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  useInBottomSheet={Platform.OS === 'ios'}
+                  _textInput={{ keyboardType: 'numeric', placeholder: 'enter the amount' }}
+                />
+              )}
+              name={'dose'}
             />
             <FormControl.HelperText>Optional</FormControl.HelperText>
           </FormControl>

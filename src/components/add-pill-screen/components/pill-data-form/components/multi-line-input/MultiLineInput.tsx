@@ -1,28 +1,24 @@
-import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
 import { StyleSheet, TextInput, TextInputProps } from 'react-native';
 
 import { BottomSheetTextInput } from '@gorhom/bottom-sheet';
 
-interface IMultiLineInputProps<T extends FieldValues> {
-  controllerProps: UseControllerProps<T>;
-  placeholder?: string;
+interface IMultiLineInputProps {
+  value: string;
+  onChange: TextInputProps['onChangeText'];
+  onBlur: TextInputProps['onBlur'];
   useInBottomSheet?: boolean;
   _textInput?: TextInputProps;
 }
 
-function MultiLineInput<T extends FieldValues>({
-  controllerProps,
-  placeholder,
+function MultiLineInput({
+  value,
+  onChange,
+  onBlur,
   useInBottomSheet,
   _textInput,
-}: IMultiLineInputProps<T>) {
-  const {
-    field: { onBlur, onChange, value },
-  } = useController(controllerProps);
-
+}: IMultiLineInputProps) {
   const props: TextInputProps = {
     style: styles.multilineTextInput,
-    placeholder: placeholder,
     multiline: true,
     cursorColor: 'black',
     placeholderTextColor: '#C4CACF',

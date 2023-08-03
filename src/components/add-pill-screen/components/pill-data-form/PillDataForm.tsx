@@ -32,16 +32,22 @@ const PillDataForm: FC = () => {
           <FormControl.Label marginTop={-1}>
             <InfoText>Name</InfoText>
           </FormControl.Label>
-          <MultiLineInput<IPillDataFormInput>
-            controllerProps={{
-              name: 'name',
-              rules: {
-                required: true,
-              },
-              control,
-            }}
-            placeholder='e. g. "Omega 3"'
+          <Controller
+            control={control}
+            render={({ field: { value, onChange, onBlur } }) => (
+              <MultiLineInput
+                value={value}
+                onChange={onChange}
+                onBlur={onBlur}
+                _textInput={{
+                  placeholder: 'e. g. "Omega 3',
+                }}
+              />
+            )}
+            rules={{ required: true }}
+            name={'name'}
           />
+          {!errors.name && <FormControl.HelperText>Required</FormControl.HelperText>}
           {errors.name?.type === 'required' && (
             <FormControl.ErrorMessage>This field is required</FormControl.ErrorMessage>
           )}
